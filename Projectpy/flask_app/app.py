@@ -20,21 +20,20 @@ from analysis_service import (
 
 app = Flask(__name__)
 
-# ===============================
-# HOME
-# ===============================
+# Route Halaman Utama
 @app.route("/")
 def index():
-    return render_template("base.html")
+    return render_template("index.html")
 
 
-# ===============================
-# CRUD (WAJIB DOSEN)
-# ===============================
+# Route Halaman CRUD (Kelola Data)
 @app.route("/crud")
 def crud():
-    data = get_all_data()
-    return render_template("crud.html", data=data)
+    try:
+        data = get_all_data()
+        return render_template("crud.html", data=data)
+    except Exception as e:
+        return f"Terjadi kesalahan saat mengambil data: {e}"
 
 
 @app.route("/add", methods=["POST"])
@@ -58,9 +57,7 @@ def delete(index):
     return redirect(url_for("crud"))
 
 
-# ===============================
-# SOAL A – C (PANDAS)
-# ===============================
+# Route Halaman Analisis Data (Pandas)
 @app.route("/data")
 def data():
     return render_template(
@@ -71,14 +68,14 @@ def data():
     )
 
 
-# ===============================
-# SOAL D (MATPLOTLIB → IMAGE)
-# ===============================
+# Route Halaman Visualisasi (Matplotlib)
 @app.route("/grafik")
 def grafik():
+    # Buat folder static jika belum ada
     plot_dir = os.path.join("static", "plots")
     os.makedirs(plot_dir, exist_ok=True)
 
+    # Generate grafik terbaru
     plot_bar_kabupaten_2019()
     plot_line_total_per_tahun()
     plot_barh_top10_2019()

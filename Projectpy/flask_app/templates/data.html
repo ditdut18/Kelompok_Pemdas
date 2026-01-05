@@ -128,11 +128,11 @@
     document.addEventListener("DOMContentLoaded", function(){
         var tables = document.querySelectorAll('table');
         tables.forEach(function(table){
-            // Hapus border lama pandas
+            
             table.border = "0";
-            // Tambahkan class Bootstrap
+            
             table.className = "table table-striped table-hover table-bordered table-sm align-middle";
-            // Bikin header jadi gelap
+            
             var thead = table.querySelector('thead');
             if(thead) {
                 thead.className = "table-dark";
