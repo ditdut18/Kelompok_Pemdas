@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="col-md-10 text-center">
+        
+        <h1 class="display-4 fw-bold text-primary mb-3">Selamat Datang Masyarakat Jabar</h1>
+        <p class="lead text-muted mb-5">
+            Sistem Informasi Data Penderita Diabetes Mellitus<br>
+            Provinsi Jawa Barat
+        </p>
+
+        <div class="row justify-content-center g-4">
+            
+            <div class="col-md-4">
+                <a href="/crud" class="text-decoration-none">
+                    <div class="card h-100 p-4 btn-menu border-primary border-2">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">📝</div>
+                            <h4 class="fw-bold text-primary">Kelola Data</h4>
+                            <p class="text-muted small">Input, Edit, dan Hapus data penderita (CRUD).</p>
+                            <button class="btn btn-primary w-100 mt-2">Buka Menu</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/data" class="text-decoration-none">
+                    <div class="card h-100 p-4 btn-menu border-success border-2">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">📊</div>
+                            <h4 class="fw-bold text-success">Analisis Pandas</h4>
+                            <p class="text-muted small">Lihat hasil statistik dan pengolahan data DataFrame.</p>
+                            <button class="btn btn-success w-100 mt-2">Buka Menu</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/grafik" class="text-decoration-none">
+                    <div class="card h-100 p-4 btn-menu border-danger border-2">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">📈</div>
+                            <h4 class="fw-bold text-danger">Visualisasi</h4>
+                            <p class="text-muted small">Grafik chart Matplotlib dari data terkini.</p>
+                            <button class="btn btn-danger w-100 mt-2">Buka Menu</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

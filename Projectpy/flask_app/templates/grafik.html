@@ -1,31 +1,66 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Visualisasi Data (Matplotlib)</h1>
-
-<div class="box">
-<h3>Grafik 20 – Jumlah Penderita per Kabupaten (2019)</h3>
-<img src="/static/plots/bar_kabupaten_2019.png" width="100%">
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-dark">📈 Visualisasi Data</h2>
+    <button class="btn btn-outline-primary" onclick="location.reload()">🔄 Refresh Grafik</button>
 </div>
 
-<div class="box">
-<h3>Grafik 21 – Total Penderita per Tahun</h3>
-<img src="/static/plots/line_total_per_tahun.png" width="100%">
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-white">
+        <h5 class="card-title fw-bold text-primary mb-0">Grafik 20 – Jumlah Penderita per Kabupaten (2019)</h5>
+    </div>
+    <div class="card-body text-center">
+        <img src="/static/plots/bar_kabupaten_2019.png" class="img-fluid rounded" alt="Grafik Batang">
+    </div>
 </div>
 
-<div class="box">
-<h3>Grafik 22 – Top 10 Kabupaten Tahun 2019</h3>
-<img src="/static/plots/barh_top10_2019.png" width="100%">
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white">
+                <h6 class="card-title fw-bold mb-0">Grafik 21 – Total Penderita per Tahun</h6>
+            </div>
+            <div class="card-body text-center">
+                <img src="/static/plots/line_total_per_tahun.png" class="img-fluid" alt="Grafik Line">
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white">
+                <h6 class="card-title fw-bold mb-0">Grafik 22 – Top 10 Kabupaten (2019)</h6>
+            </div>
+            <div class="card-body text-center">
+                <img src="/static/plots/barh_top10_2019.png" class="img-fluid" alt="Grafik Top 10">
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="box">
-<h3>Grafik 23 – Proporsi Kategori DM (2019)</h3>
-<img src="/static/plots/pie_kategori_2019.png" width="60%">
-</div>
-
-<div class="box">
-<h3>Grafik 24 – Perbandingan 3 Tahun Terakhir</h3>
-<img src="/static/plots/bar_3_tahun_terakhir.png" width="80%">
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white">
+                <h6 class="card-title fw-bold mb-0">Grafik 23 – Proporsi Kategori DM</h6>
+            </div>
+            <div class="card-body text-center">
+                <img src="/static/plots/pie_kategori_2019.png" class="img-fluid" style="max-height: 400px;" alt="Grafik Pie">
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white">
+                <h6 class="card-title fw-bold mb-0">Grafik 24 – Tren 3 Tahun Terakhir</h6>
+            </div>
+            <div class="card-body text-center">
+                <img src="/static/plots/bar_3_tahun_terakhir.png" class="img-fluid" alt="Grafik Batang">
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
