@@ -71,7 +71,6 @@ def data():
 # Route Halaman Visualisasi (Matplotlib)
 @app.route("/grafik")
 def grafik():
-    # Buat folder static jika belum ada
     plot_dir = os.path.join("static", "plots")
     os.makedirs(plot_dir, exist_ok=True)
 
@@ -82,7 +81,7 @@ def grafik():
     plot_pie_kategori_2019()
     plot_bar_3_tahun_terakhir()
 
-    return render_template("grafik.html")
+    return render_template("grafik.html")   
 
 
 if __name__ == "__main__":

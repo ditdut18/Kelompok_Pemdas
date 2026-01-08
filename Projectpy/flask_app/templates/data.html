@@ -1,144 +1,126 @@
 {% extends "base.html" %}
+
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold text-dark">📊 Analisis Data Diabetes</h2>
-    <span class="badge bg-success">Pandas DataFrame</span>
-</div>
+<h2 class="mb-4 text-center">Analisis Data (Pandas)</h2>
 
-<div class="card shadow-sm mb-4">
-    <div class="card-header bg-primary text-white">
-        <h5 class="mb-0">🅰️ SOAL A – Pengenalan Data</h5>
-    </div>
-    <div class="card-body">
-        
-        <h6 class="fw-bold mt-3">1. Lima Baris Pertama</h6>
-        <div class="table-responsive">
-            {{ a.a1_head_5_baris.to_html() | safe }}
-        </div>
+<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+    <li class="nav-item">
+        <button class="nav-link active" id="soal-a-tab" data-bs-toggle="tab" data-bs-target="#soal-a" type="button">Soal A (Dasar)</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" id="soal-b-tab" data-bs-toggle="tab" data-bs-target="#soal-b" type="button">Soal B (Filter)</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" id="soal-c-tab" data-bs-toggle="tab" data-bs-target="#soal-c" type="button">Soal C (Agregasi)</button>
+    </li>
+</ul>
 
-        <h6 class="fw-bold mt-4">2. Lima Baris Terakhir</h6>
-        <div class="table-responsive">
-            {{ a.a2_tail_5_baris.to_html() | safe }}
-        </div>
+<div class="tab-content" id="myTabContent">
 
-        <h6 class="fw-bold mt-4">3. Informasi Struktur</h6>
-        <div class="table-responsive">
-            {{ a.a3_info_struktur.to_frame("Tipe Data").to_html() | safe }}
-        </div>
-
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <h6 class="fw-bold">4. Statistik Deskriptif</h6>
-                <div class="table-responsive">
-                    {{ a.a4_statistik_deskriptif.to_html() | safe }}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h6 class="fw-bold">5 & 6. Info Unik</h6>
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Jumlah Kabupaten
-                        <span class="badge bg-primary rounded-pill">{{ a.a6_jumlah_kabupaten }}</span>
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Tahun Tersedia:</strong> <br>
-                        {% for t in a.a5_nilai_unik_tahun %}
-                            <span class="badge bg-secondary me-1">{{ t }}</span>
-                        {% endfor %}
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="card shadow-sm mb-4">
-    <div class="card-header bg-info text-white">
-        <h5 class="mb-0">🅱️ SOAL B – Filtering & Sorting</h5>
-    </div>
-    <div class="card-body">
-        <div class="alert alert-light border">
-            <strong>Soal 8:</strong> Data Tahun 2019
-            <div class="table-responsive mt-2">
-                {{ b.b8_data_tahun_2019.to_html() | safe }}
-            </div>
+    <div class="tab-pane fade show active" id="soal-a">
+        <div class="card p-3">
+            <h5>1. Menampilkan 5 Baris Pertama (Head)</h5>
+            {{ a.a1_head_5_baris.to_html(classes="table table-striped table-sm", index=False) | safe }}
         </div>
         
-        <div class="alert alert-light border">
-            <strong>Soal 12:</strong> Top 10 Penderita Tertinggi (2019)
-            <div class="table-responsive mt-2">
-                {{ b.b12_top10_2019.to_html() | safe }}
-            </div>
+        <div class="card p-3 mt-3">
+            <h5>2. Menampilkan 5 Baris Terakhir (Tail)</h5>
+            {{ a.a2_tail_5_baris.to_html(classes="table table-striped table-sm", index=False) | safe }}
         </div>
 
-        <div class="accordion" id="accordionSoalB">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLainnya">
-                        Lihat Filter Lainnya (Soal 9, 10, 11, 13)
-                    </button>
-                </h2>
-                <div id="collapseLainnya" class="accordion-collapse collapse" data-bs-parent="#accordionSoalB">
-                    <div class="accordion-body">
-                        <h6>> 100.000 Penderita</h6>
-                        <div class="table-responsive mb-3">{{ b.b9_lebih_100k.to_html() | safe }}</div>
-                        
-                        <h6>Urut Jumlah (Desc)</h6>
-                        <div class="table-responsive mb-3">{{ b.b10_sort_jumlah_desc.to_html() | safe }}</div>
-                        
-                        <h6>Kabupaten Bogor</h6>
-                        <div class="table-responsive">{{ b.b13_kabupaten_bogor.to_html() | safe }}</div>
-                    </div>
-                </div>
-            </div>
+        <div class="card p-3 mt-3">
+            <h5>3. Informasi Struktur Data</h5>
+            <pre>{{ a.a3_info_struktur }}</pre>
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>4. Statistik Deskriptif</h5>
+            {{ a.a4_statistik_deskriptif.to_html(classes="table table-bordered table-sm") | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>5 & 6. Nilai Unik</h5>
+            <p><strong>Tahun yang tersedia:</strong> {{ a.a5_nilai_unik_tahun }}</p>
+            <p><strong>Jumlah Kabupaten/Kota:</strong> {{ a.a6_jumlah_kabupaten }}</p>
+        </div>
+        
+        <div class="card p-3 mt-3">
+            <h5>7. Memilih Kolom Tertentu</h5>
+            {{ a.a7_kolom_terpilih.head().to_html(classes="table table-sm", index=False) | safe }}
+            <small class="text-muted">*Menampilkan 5 data teratas saja</small>
         </div>
     </div>
+
+    <div class="tab-pane fade" id="soal-b">
+        <div class="card p-3">
+            <h5>8. Data Tahun 2019 Saja</h5>
+            {{ b.b8_data_tahun_2019.head().to_html(classes="table table-striped table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>9. Penderita > 100.000</h5>
+            {{ b.b9_lebih_100k.head().to_html(classes="table table-striped table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>10. Sorting Jumlah Penderita (Terbanyak)</h5>
+            {{ b.b10_sort_jumlah_desc.head().to_html(classes="table table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>11. Sorting Tahun & Jumlah</h5>
+            <p>Diurutkan berdasarkan Tahun (Ascending) lalu Jumlah (Descending).</p>
+            {{ b.b11_sort_tahun_dan_jumlah.head().to_html(classes="table table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>12. Top 10 Terbanyak Tahun 2019</h5>
+            {{ b.b12_top10_2019.to_html(classes="table table-bordered table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>13. Data Kabupaten Bogor</h5>
+            {{ b.b13_kabupaten_bogor.to_html(classes="table table-info table-sm", index=False) | safe }}
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="soal-c">
+        <div class="card p-3">
+            <h5>14. Total Penderita Per Tahun</h5>
+            {{ c.c14_total_per_tahun.to_html(classes="table table-striped table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>15. Rata-Rata Penderita per Kabupaten</h5>
+            {{ c.c15_rata_per_kabupaten.head().to_html(classes="table table-striped table-sm", index=False) | safe }}
+            <small class="text-muted">*Menampilkan 5 data teratas</small>
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>16. Kabupaten Tertinggi & Terendah (Total)</h5>
+            <p><strong>Tertinggi:</strong> {{ c.c16_kabupaten_tertinggi }}</p>
+            <p><strong>Terendah:</strong> {{ c.c16_kabupaten_terendah }}</p>
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>17. Menambah Kolom Kategori (Baru)</h5>
+            <p>Kolom <code>kategori_dm</code> ditambahkan berdasarkan jumlah penderita.</p>
+            {{ c.c17_data_dengan_kategori.head().to_html(classes="table table-striped table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>18. Menambah Kolom Persentase</h5>
+            <p>Menghitung persentase penderita tiap kota terhadap total tahun tersebut.</p>
+            {{ c.c18_data_dengan_persentase.head().to_html(classes="table table-bordered table-sm", index=False) | safe }}
+        </div>
+
+        <div class="card p-3 mt-3">
+            <h5>19. Tabel Ringkasan (Summary)</h5>
+            {{ c.c19_tabel_ringkas.to_html(classes="table table-dark table-sm", index=False) | safe }}
+        </div>
+    </div>
+
 </div>
-
-<div class="card shadow-sm mb-4">
-    <div class="card-header bg-warning text-dark">
-        <h5 class="mb-0">©️ SOAL C – Agregasi (Grouping)</h5>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                <h6 class="fw-bold">14. Total Per Tahun</h6>
-                <div class="table-responsive">
-                    {{ c.c14_total_per_tahun.to_html() | safe }}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h6 class="fw-bold">16. Ekstrem</h6>
-                <div class="card bg-light p-3">
-                    <p class="mb-1">📈 Tertinggi: <strong>{{ c.c16_kabupaten_tertinggi }}</strong></p>
-                    <p class="mb-0">📉 Terendah: <strong>{{ c.c16_kabupaten_terendah }}</strong></p>
-                </div>
-                <h6 class="fw-bold mt-3">19. Tabel Ringkasan</h6>
-                <div class="table-responsive">
-                    {{ c.c19_tabel_ringkas.to_html() | safe }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function(){
-        var tables = document.querySelectorAll('table');
-        tables.forEach(function(table){
-            
-            table.border = "0";
-            
-            table.className = "table table-striped table-hover table-bordered table-sm align-middle";
-            
-            var thead = table.querySelector('thead');
-            if(thead) {
-                thead.className = "table-dark";
-            }
-        });
-    });
-</script>
 
 {% endblock %}
